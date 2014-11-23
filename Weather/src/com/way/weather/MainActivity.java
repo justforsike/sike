@@ -55,18 +55,20 @@ import com.way.util.SharePreferenceUtil;
 import com.way.util.T;
 import com.way.util.TimeUtil;
 
-@SuppressLint("HandlerLeak")
 public class MainActivity extends FragmentActivity implements
 		Application.EventHandler, OnClickListener {
 	public static final String UPDATE_WIDGET_WEATHER_ACTION = "com.way.action.update_weather";
+	
 	public static final String WEATHER_SIMPLE_URL = "http://www.weather.com.cn/data/sk/";// 简要天气信息
 	public static final String WEATHER_BASE_URL = "http://m.weather.com.cn/data/";// 详细天气
 	//获取PM2.5的网站
-	public static final String PM2D5_BASE_URL = "http://www.pm25.in/api/querys/pm2_5.json?city=SHENZHEN&token=HUL7sQBaUKVvgWzdKdTB&stations=no";
+	public static final String PM2D5_BASE_URL = "http://www.pm25.in/api/querys/pm2_5.json?city=zhuhai&token=HUL7sQBaUKVvgWzdKdTB&stations=no";
 	//保存天气信息的文件的名字
 	private static final String WEATHER_INFO_FILENAME = "_weather.json";
 	private static final String SIMPLE_WEATHER_INFO_FILENAME = "_simple_weather.json";
 	private static final String PM2D5_INFO_FILENAME = "_pm2d5.json";
+	
+	
 	private static final int LOACTION_OK = 0;
 	private static final int ON_NEW_INTENT = 1;
 	private static final int UPDATE_EXISTS_CITY = 2;
@@ -331,10 +333,15 @@ public class MainActivity extends FragmentActivity implements
 		mCurWeatherinfo = null;
 		mApplication.setmCurWeatherinfo(null);
 		if (!TextUtils.isEmpty(result) && !result.contains("页面没有找到")) {
-			// L.i(result);
-			Weather weather = mGson.fromJson(result, Weather.class);
-			mCurWeatherinfo = weather.getWeatherinfo();
-			// L.i(mCurWeatherinfo.toString());
+			L.i(result);
+			if(result.contains("<html>")){
+				//Toast.makeText(this, "官方数据提供商的页面已经发生改变，请更新最新的软件", Toast.LENGTH_SHORT);
+				L.i("不是Json对象，应该是Html页面");
+			}else{
+				Weather weather = mGson.fromJson(result, Weather.class);
+				mCurWeatherinfo = weather.getWeatherinfo();
+				L.i(mCurWeatherinfo.toString());
+			}
 		} else {
 			result = "";
 		}
