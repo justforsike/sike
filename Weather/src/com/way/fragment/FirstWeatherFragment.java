@@ -1,18 +1,17 @@
 package com.way.fragment;
 
-import com.way.app.Application;
-import com.way.bean.Weatherinfo;
-import com.way.util.TimeUtil;
-import com.way.weather.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.way.app.Application;
+import com.way.bean.Weatherinfo;
+import com.way.util.TimeUtil;
+import com.way.weather.R;
 
 public class FirstWeatherFragment extends Fragment {
 	private TextView weekTv1, weekTv2, weekTv3;

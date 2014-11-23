@@ -75,6 +75,11 @@ public class CityDB {
 		return city;
 	}
 
+	/**
+	 * 获取城市的详细信息
+	 * @param city
+	 * @return
+	 */
 	private City getCityInfo(String city) {
 		Cursor c = db.rawQuery("SELECT * from " + CITY_TABLE_NAME
 				+ " where city=?", new String[] { city });

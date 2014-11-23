@@ -3,6 +3,7 @@ package com.way.weather;
 import java.util.List;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ import com.way.apapter.CityAdapter;
 import com.way.apapter.SearchCityAdapter;
 import com.way.app.Application;
 import com.way.bean.City;
-import com.way.db.CityDB;
 import com.way.plistview.BladeView;
 import com.way.plistview.BladeView.OnItemClickListener;
 import com.way.plistview.PinnedHeaderListView;
@@ -35,6 +35,7 @@ import com.way.util.L;
 import com.way.util.NetUtil;
 import com.way.util.T;
 
+@SuppressLint("ClickableViewAccessibility")
 public class SelectCtiyActivity extends Activity implements TextWatcher,
 		OnClickListener, Application.EventHandler {
 	private EditText mSearchEditText;
@@ -56,7 +57,7 @@ public class SelectCtiyActivity extends Activity implements TextWatcher,
 	private List<Integer> mPositions;
 	// 首字母对应的位置
 	private Map<String, Integer> mIndexer;
-	private CityDB mCityDB;
+//	private CityDB mCityDB;
 	private Application mApplication;
 	private InputMethodManager mInputMethodManager;
 
@@ -151,7 +152,7 @@ public class SelectCtiyActivity extends Activity implements TextWatcher,
 
 	private void initData() {
 		mApplication = Application.getInstance();
-		mCityDB = mApplication.getCityDB();
+//		mCityDB = mApplication.getCityDB();
 		mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
 		if (mApplication.isCityListComplite()) {

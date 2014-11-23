@@ -1,7 +1,6 @@
 package com.way.weather;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,6 +55,7 @@ import com.way.util.SharePreferenceUtil;
 import com.way.util.T;
 import com.way.util.TimeUtil;
 
+@SuppressLint("HandlerLeak")
 public class MainActivity extends FragmentActivity implements
 		Application.EventHandler, OnClickListener {
 	public static final String UPDATE_WIDGET_WEATHER_ACTION = "com.way.action.update_weather";
@@ -380,6 +381,7 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	// 把信息保存到文件中
+	/*
 	private boolean save2File(String result, String fileName) {
 		try {
 			FileOutputStream fos = MainActivity.this.openFileOutput(fileName,
@@ -391,7 +393,7 @@ public class MainActivity extends FragmentActivity implements
 			e.printStackTrace();
 		}
 		return false;
-	}
+	}*/
 
 	/**
 	 * 从文件中获取信息
